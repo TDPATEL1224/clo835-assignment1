@@ -7,9 +7,11 @@ FROM ubuntu:26.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+# iputils-ping added so we can test container-to-container name resolution
+# (docker exec blue ping pink). The base image does not include ping.
 RUN apt-get update -y \
  && apt-get install -y --no-install-recommends \
-      python3 python3-venv mysql-client ca-certificates \
+      python3 python3-venv mysql-client ca-certificates iputils-ping \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
