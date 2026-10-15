@@ -12,7 +12,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_mysql
-    image: my_db
+    image: tdpatel12/clo835-mysql:v1
     environment:
       MYSQL_ROOT_PASSWORD: pw
     volumes:
@@ -25,7 +25,7 @@ services:
 
   blue:
     build: .
-    image: my_app
+    image: tdpatel12/clo835-webapp:v1
     ports: ["8081:8080"]
     environment: &app_env
       DBHOST: mysql-db
@@ -39,7 +39,7 @@ services:
         condition: service_healthy
 
   pink:
-    image: my_app
+    image: tdpatel12/clo835-webapp:v1
     ports: ["8082:8080"]
     environment:
       <<: *app_env
@@ -49,7 +49,7 @@ services:
         condition: service_healthy
 
   lime:
-    image: my_app
+    image: tdpatel12/clo835-webapp:v1
     ports: ["8083:8080"]
     environment:
       <<: *app_env
